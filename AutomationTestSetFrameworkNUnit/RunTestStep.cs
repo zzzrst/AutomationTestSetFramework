@@ -14,7 +14,7 @@ namespace AutomationTestSetFrameworkNUnit
         {
             TestStep = new FakeTestStep()
             {
-                shouldExecuteAmountOfTimes = 1,
+                ShouldExecuteAmountOfTimes = 1,
                 Name = "Test Step",
                 NextRunRaiseException = false,
                 OnExceptionFlowBehavior = IMethodBoundaryAspect.FlowBehavior.Return,
@@ -73,7 +73,7 @@ namespace AutomationTestSetFrameworkNUnit
         {
             if (TestStep is FakeTestStep fakeTestStep)
             {
-                fakeTestStep.shouldExecuteAmountOfTimes = 5;
+                fakeTestStep.ShouldExecuteAmountOfTimes = 5;
                 AutomationTestSetDriver.RunTestStep(TestStep);
                 Assert.AreEqual(5, fakeTestStep.ExecuteCount, "Expected the executed count to be 5.");
                 Assert.AreEqual(1, fakeTestStep.SetupCount, "Expected the setup count to be 1.");
@@ -87,7 +87,7 @@ namespace AutomationTestSetFrameworkNUnit
         {
             if (TestStep is FakeTestStep fakeTestStep)
             {
-                fakeTestStep.shouldExecuteAmountOfTimes = 5;
+                fakeTestStep.ShouldExecuteAmountOfTimes = 5;
                 fakeTestStep.NextRunRaiseException = true;
                 AutomationTestSetDriver.RunTestStep(TestStep);
                 Assert.AreEqual(1, fakeTestStep.ExecuteCount, "Expected the executed count to be 1.");
@@ -102,7 +102,7 @@ namespace AutomationTestSetFrameworkNUnit
         {
             if (TestStep is FakeTestStep fakeTestStep)
             {
-                fakeTestStep.shouldExecuteAmountOfTimes = 5;
+                fakeTestStep.ShouldExecuteAmountOfTimes = 5;
                 fakeTestStep.NextRunRaiseException = true;
                 fakeTestStep.OnExceptionFlowBehavior = IMethodBoundaryAspect.FlowBehavior.Continue;
 
@@ -110,7 +110,7 @@ namespace AutomationTestSetFrameworkNUnit
                 {
                     AutomationTestSetDriver.RunTestStep(TestStep);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                 }
 

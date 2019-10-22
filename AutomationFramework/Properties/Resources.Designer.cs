@@ -68,5 +68,32 @@ namespace AutomationTestSetFramework.Properties {
                 return ResourceManager.GetString("IMethodBoundaryAspectCastingError", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provided input TestCase was null.
+        /// </summary>
+        internal static string TestCaseNullExceptionMessage {
+            get {
+                return ResourceManager.GetString("TestCaseNullExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provided input TestSet was null.
+        /// </summary>
+        internal static string TestSetNullExceptionMessage {
+            get {
+                return ResourceManager.GetString("TestSetNullExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provided input TestStep was null.
+        /// </summary>
+        internal static string TestStepNullExceptionMessage {
+            get {
+                return ResourceManager.GetString("TestStepNullExceptionMessage", resourceCulture);
+            }
+        }
     }
 }

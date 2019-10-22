@@ -8,7 +8,7 @@ namespace AutomationTestSetFrameworkNUnit
 {
     public class FakeTestCase : ITestCase
     {
-        public bool ShouldExecuteVariable { get; set; }
+        public int ShouldExecuteAmountOfTimes { get; set; } = 1;
 
         public string Name { get; set; }
 
@@ -17,8 +17,6 @@ namespace AutomationTestSetFrameworkNUnit
         private int TestStepIndex = 0;
 
         public ITestStepStatus TestStepStatus { get; set; }
-
-        public int ExecuteCount { get; private set; } = 0;
 
         public int ExceptionHandleCount { get; private set; } = 0;
 
@@ -29,18 +27,11 @@ namespace AutomationTestSetFrameworkNUnit
         public int TearDownCount { get; private set; } = 0;
 
         public bool NextRunRaiseException { get; set; } = false;
-        public int TotalTestSteps { get; set; }
-
-        public ITestCaseStatus TestCaseStatus { get; set; }
-
-        public void Execute()
-        {
-            ExecuteCount += 1;
-            if (NextRunRaiseException)
-            {
-                throw new Exception();
-            }
+        public int TotalTestSteps {
+            get => TestStep.Count;
+            set => TotalTestSteps = TestStep.Count;
         }
+        public ITestCaseStatus TestCaseStatus { get; set; }
 
         public bool ExistNextTestStep()
         {
@@ -51,6 +42,12 @@ namespace AutomationTestSetFrameworkNUnit
         {
             ITestStep teststep = TestStep[TestStepIndex];
             TestStepIndex += 1;
+            if (TestStepIndex == TestStep.Count && ShouldExecuteAmountOfTimes > 1)
+            {
+                TestStepIndex = 0;
+                ShouldExecuteAmountOfTimes -= 1;
+            }
+
             return teststep;
         }
 
@@ -66,7 +63,7 @@ namespace AutomationTestSetFrameworkNUnit
 
         public bool ShouldExecute()
         {
-            return this.ShouldExecuteVariable;
+            return this.ExistNextTestStep();
         }
 
         public void TearDown()
@@ -76,7 +73,7 @@ namespace AutomationTestSetFrameworkNUnit
 
         public void UpdateTestCaseStatus(ITestStepStatus testStepStatus)
         {
-            throw new NotImplementedException();
+            //
         }
     }
 }

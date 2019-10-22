@@ -8,7 +8,7 @@ namespace AutomationTestSetFrameworkNUnit
 {
     public class FakeTestStep : ITestStep
     {
-        public int shouldExecuteAmountOfTimes { get; set; }
+        public int ShouldExecuteAmountOfTimes { get; set; }
 
         public string Name { get; set; }
 
@@ -47,7 +47,7 @@ namespace AutomationTestSetFrameworkNUnit
 
         public bool ShouldExecute()
         {
-            return ExecuteCount < this.shouldExecuteAmountOfTimes;
+            return ExecuteCount < this.ShouldExecuteAmountOfTimes;
         }
 
         public void TearDown()

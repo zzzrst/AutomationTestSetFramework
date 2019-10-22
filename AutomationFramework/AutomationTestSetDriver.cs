@@ -9,7 +9,7 @@ namespace AutomationTestSetFramework
     /// <summary>
     /// Main driver for the automation test set framework.
     /// </summary>
-    public class AutomationTestSetDriver
+    public static class AutomationTestSetDriver
     {
         /// <summary>
         /// Main method to start running the test set provided.
@@ -21,6 +21,10 @@ namespace AutomationTestSetFramework
         [TestMethodBoundaryAspect]
         public static void RunTestSet(ITestSet TestSet)
         {
+            if (TestSet == null)
+            {
+                throw new ArgumentNullException($"{ResourceHelper.GetString("TestSetNullExceptionMessage")}");
+            }
             // We continue to run our test set if
             //                                    1. The next test case exists.
             //                                    2. We are supposed to execute.
@@ -40,6 +44,11 @@ namespace AutomationTestSetFramework
         [TestMethodBoundaryAspect]
         public static void RunTestCase(ITestCase testCase)
         {
+            if (testCase == null)
+            {
+                throw new ArgumentNullException($"{ResourceHelper.GetString("TestCaseNullExceptionMessage")}");
+            }
+
             while (testCase.ExistNextTestStep() && testCase.ShouldExecute())
             {
                 ITestStep testStep = testCase.GetNextTestStep();
@@ -51,6 +60,11 @@ namespace AutomationTestSetFramework
         [TestMethodBoundaryAspect]
         public static void RunTestStep(ITestStep testStep)
         {
+            if (testStep == null)
+            {
+                throw new ArgumentNullException($"{ResourceHelper.GetString("TestStepNullExceptionMessage")}");
+            }
+
             while (testStep.ShouldExecute())
             {
                 testStep.Execute();

@@ -121,4 +121,16 @@
     <value>does not implement IMethodBoundaryAspect</value>
     <comment>Error when trying to cast to IMethodBoundaryAspect</comment>
   </data>
+  <data name="TestCaseNullExceptionMessage" xml:space="preserve">
+    <value>Provided input TestCase was null</value>
+    <comment>Exception error when TestCase is null</comment>
+  </data>
+  <data name="TestSetNullExceptionMessage" xml:space="preserve">
+    <value>Provided input TestSet was null</value>
+    <comment>Exception error when TestSet is null</comment>
+  </data>
+  <data name="TestStepNullExceptionMessage" xml:space="preserve">
+    <value>Provided input TestStep was null</value>
+    <comment>Exception error when TestStep is null</comment>
+  </data>
 </root>
