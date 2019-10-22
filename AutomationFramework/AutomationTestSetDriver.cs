@@ -12,11 +12,6 @@ namespace AutomationTestSetFramework
     public class AutomationTestSetDriver
     {
         /// <summary>
-        /// Gets or sets the test set for the driver to use.
-        /// </summary>
-        public ITestSet TestSet { get; set; }
-
-        /// <summary>
         /// Main method to start running the test set provided.
         /// Before running, it will run the test set's implementation of setup().
         /// If there is an exception during the run, it will call on the test set's implementation of handleException().
@@ -24,26 +19,26 @@ namespace AutomationTestSetFramework
         /// </summary>
         /// <param name="testSet">The test set to be run.</param>
         [TestMethodBoundaryAspect]
-        public void RunTestSet()
+        public static void RunTestSet(ITestSet TestSet)
         {
             // We continue to run our test set if
             //                                    1. The next test case exists.
             //                                    2. We are supposed to execute.
-            while (this.TestSet.ExistNextTestCase() && this.TestSet.ShouldExecute())
+            while (TestSet.ExistNextTestCase() && TestSet.ShouldExecute())
             {
-                ITestCase testCase = this.TestSet.GetNextTestCase();
+                ITestCase testCase = TestSet.GetNextTestCase();
 
                 // We call on Run Test Case to run the test case.
                 // The test case status should be updated during the run.
                 RunTestCase(testCase);
 
                 // Update my test set status based on the test case status.
-                this.TestSet.UpdateTestSetStatus(testCase.TestCaseStatus);
+                TestSet.UpdateTestSetStatus(testCase.TestCaseStatus);
             }
         }
 
         [TestMethodBoundaryAspect]
-        private static void RunTestCase(ITestCase testCase)
+        public static void RunTestCase(ITestCase testCase)
         {
             while (testCase.ExistNextTestStep() && testCase.ShouldExecute())
             {
@@ -54,7 +49,7 @@ namespace AutomationTestSetFramework
         }
 
         [TestMethodBoundaryAspect]
-        private static void RunTestStep(ITestStep testStep)
+        public static void RunTestStep(ITestStep testStep)
         {
             while (testStep.ShouldExecute())
             {

@@ -26,8 +26,10 @@ namespace AutomationTestSetFramework
                 firstArgument.SetUp();
                 base.OnEntry(args);
             }
-
-            throw new ArgumentException($"{nameof(args)} {ResourceHelper.GetString("IMethodBoundaryAspectCastingError")}");
+            else
+            {
+                throw new ArgumentException($"{nameof(args)} {ResourceHelper.GetString("IMethodBoundaryAspectCastingError")}");
+            }
         }
 
         /// <summary>
@@ -41,11 +43,34 @@ namespace AutomationTestSetFramework
             if (args.Arguments[0] is IMethodBoundaryAspect firstArgument)
             {
                 firstArgument.HandleException(args.Exception);
-                this.OnExit(args);
-                args.FlowBehavior = FlowBehavior.Return;
-            }
+                
+                IMethodBoundaryAspect.FlowBehavior flowBehavior = firstArgument.OnExceptionFlowBehavior;
 
-            throw new ArgumentException($"{nameof(args)} {ResourceHelper.GetString("IMethodBoundaryAspectCastingError")}");
+                switch (flowBehavior)
+                {
+                    case IMethodBoundaryAspect.FlowBehavior.Continue:
+                        args.Method.Invoke(null, args.Arguments);
+                        return;
+
+                    case IMethodBoundaryAspect.FlowBehavior.RethrowException:
+                        args.FlowBehavior = FlowBehavior.RethrowException;
+                        return;
+
+                    case IMethodBoundaryAspect.FlowBehavior.Return:
+                        this.OnExit(args);
+                        args.FlowBehavior = FlowBehavior.Return;
+                        return;
+
+                    default:
+                        this.OnExit(args);
+                        args.FlowBehavior = FlowBehavior.Return;
+                        return;
+                }
+            }
+            else
+            {
+                throw new ArgumentException($"{nameof(args)} {ResourceHelper.GetString("IMethodBoundaryAspectCastingError")}");
+            }
         }
 
         /// <summary>
@@ -60,8 +85,10 @@ namespace AutomationTestSetFramework
                 firstArgument.TearDown();
                 base.OnExit(args);
             }
-
-            throw new ArgumentException($"{nameof(args)} {ResourceHelper.GetString("IMethodBoundaryAspectCastingError")}");
+            else
+            {
+                throw new ArgumentException($"{nameof(args)} {ResourceHelper.GetString("IMethodBoundaryAspectCastingError")}");
+            }
         }
     }
 }

@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace AutomationTestSetFrameworkNUnit
 {
-    public class Tests
+    public class RunTestSetTest
     {
         [SetUp]
         public void Setup()
