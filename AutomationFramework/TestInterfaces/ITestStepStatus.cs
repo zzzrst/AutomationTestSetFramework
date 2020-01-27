@@ -9,7 +9,7 @@ namespace AutomationTestSetFramework
     public interface ITestStepStatus : ITestStatus
     {
         /// <summary>
-        /// The test step number that corresponds to the test step.
+        /// Gets or sets the test step number that corresponds to the test step.
         /// </summary>
         public int TestStepNumber { get; set; }
     }
