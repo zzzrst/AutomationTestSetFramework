@@ -12,6 +12,8 @@ namespace AutomationTestSetFrameworkNUnit
 
         public string Name { get; set; }
 
+        public int TestStepNumber { get; set; }
+
         public ITestStepStatus TestStepStatus { get; set; }
 
         public int ExecuteCount { get; private set; } = 0;

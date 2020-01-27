@@ -14,6 +14,11 @@ namespace AutomationTestSetFramework
         public string Name { get; set; }
 
         /// <summary>
+        /// Gets or sets the number of the test step.
+        /// </summary>
+        public int TestStepNumber { get; set; }
+
+        /// <summary>
         /// Gets or sets the current test step status.
         /// </summary>
         public ITestStepStatus TestStepStatus { get; set; }
