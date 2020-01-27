@@ -6,11 +6,6 @@ namespace AutomationTestSetFrameworkNUnit
 {
     class FakeTestSetLogger : ITestSetLogger
     {
-        private static string Tab(int indents = 1)
-        {
-            return string.Concat(Enumerable.Repeat("    ", indents));
-        }
-
         public void Log(ITestSet testSet)
         {
             ITestSetStatus testSetStatus = testSet.TestSetStatus;

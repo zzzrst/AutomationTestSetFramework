@@ -33,8 +33,10 @@ namespace AutomationTestSetFrameworkNUnit
             ExecuteCount += 1;
             if (NextRunRaiseException)
             {
+                TestStepStatus.RunSuccessful = false;
                 throw new Exception();
             }
+            TestStepStatus.RunSuccessful = true;
         }
 
         public void HandleException(Exception e)
