@@ -15,6 +15,11 @@ namespace AutomationTestSetFramework
         public string Name { get; set; }
 
         /// <summary>
+        /// Gets or Sets the number of the test case.
+        /// </summary>
+        public int TestCaseNumber { get; set; }
+
+        /// <summary>
         /// Gets or sets the total number of test steps the test case contains.
         /// </summary>
         public int TotalTestSteps { get; set; }
@@ -23,6 +28,11 @@ namespace AutomationTestSetFramework
         /// Gets the current status of the test case.
         /// </summary>
         public ITestCaseStatus TestCaseStatus { get; }
+
+        /// <summary>
+        /// Gets or sets the current test step number.
+        /// </summary>
+        public int CurrTestStepNumber { get; set; }
 
         /// <summary>
         /// Returns whether there is a next test step or not.
