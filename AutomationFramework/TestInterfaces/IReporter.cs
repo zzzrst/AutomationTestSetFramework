@@ -29,6 +29,7 @@ namespace AutomationTestSetFramework
         /// Adds a status for a test step.
         /// </summary>
         /// <param name="testStepStatus">The test step to add a status for.</param>
-        public void AddTestStepStatus(ITestStepStatus testStepStatus);
+        /// <param name="testCaseStatus">The test case to add the status to.</param>
+        public void AddTestStepStatusToTestCase(ITestStepStatus testStepStatus, ITestCaseStatus testCaseStatus);
     }
 }
