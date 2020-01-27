@@ -1,4 +1,4 @@
-﻿// <copyright file="ITestStep.cs" company="PlaceholderCompany">
+﻿// <copyright file="ITestCaseLogger.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 namespace AutomationTestSetFramework
