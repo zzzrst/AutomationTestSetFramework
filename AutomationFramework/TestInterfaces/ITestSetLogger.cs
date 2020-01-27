@@ -1,17 +1,17 @@
-﻿// <copyright file="ITestStep.cs" company="PlaceholderCompany">
+﻿// <copyright file="ITestSet.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 namespace AutomationTestSetFramework
 {
     /// <summary>
-    /// Interface that represents the test case logger. It writes information about the test case.
+    /// Interface that represents the test set logger. It writes information about the test set.
     /// </summary>
-    public interface ITestCaseLogger
+    public interface ITestSetLogger
     {
         /// <summary>
-        /// Writes to log information anout the test case.
+        /// Writes to log information anout the test set.
         /// </summary>
-        /// <param name="testCase">The test case to log.</param>
-        public void Log(ITestCase testCase);
+        /// <param name="testSet">The test set to log.</param>
+        public void Log(ITestSet testSet);
     }
 }
