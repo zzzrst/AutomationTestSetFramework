@@ -16,6 +16,7 @@ namespace AutomationTestSetFrameworkNUnit
             {
                 ShouldExecuteAmountOfTimes = 1,
                 Name = "Test Step",
+                TestStepNumber = 1,
                 NextRunRaiseException = false,
                 OnExceptionFlowBehavior = IMethodBoundaryAspect.FlowBehavior.Return,
             };
