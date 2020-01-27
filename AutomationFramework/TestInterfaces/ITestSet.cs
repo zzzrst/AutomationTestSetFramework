@@ -24,6 +24,11 @@ namespace AutomationTestSetFramework
         public ITestSetStatus TestSetStatus { get; }
 
         /// <summary>
+        /// Gets or Sets the current test case number.
+        /// </summary>
+        public int CurrTestCaseNumber { get; set; }
+
+        /// <summary>
         /// Returns whether the next test case exist or not.
         /// </summary>
         /// <returns>True if there is a next test case.</returns>

@@ -20,6 +20,8 @@ namespace AutomationTestSetFrameworkNUnit
 
         public ITestSetStatus TestSetStatus { get; set; }
 
+        public int CurrTestCaseNumber { get; set; }
+
         public int ExecuteCount { get; private set; } = 0;
 
         public int ExceptionHandleCount { get; private set; } = 0;
