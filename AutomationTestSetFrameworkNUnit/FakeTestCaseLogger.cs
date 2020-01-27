@@ -2,29 +2,27 @@
 using System;
 using System.Linq;
 
-namespace AutomationTestSetFrameworkNUnit
+namespace AutomationTestCaseFrameworkNUnit
 {
-    class FakeTestSetLogger : ITestSetLogger
+    class FakeTestCaseLogger : ITestCaseLogger
     {
-        private static string Tab(int indents = 1)
+        public void Log(ITestCase testCase)
         {
-            return string.Concat(Enumerable.Repeat("    ", indents));
-        }
-
-        public void Log(ITestSet testSet)
-        {
-            ITestSetStatus testSetStatus = testSet.TestSetStatus;
-            Console.WriteLine(Tab(1) + $"Test Set Name: {testSet.Name}.");
-            Console.WriteLine(Tab(1) + $"Test Set Curr Test Case Number: {testSet.CurrTestCaseNumber}.");
-            Console.WriteLine(Tab(1) + $"Test Set Status");
-            Console.WriteLine(Tab(1) + $"Run Successful: {testSetStatus.RunSuccessful}");
-            Console.WriteLine(Tab(1) + $"Error Stack: {testSetStatus.ErrorStack}");
-            Console.WriteLine(Tab(1) + $"Friendly Error Message: {testSetStatus.FriendlyErrorMessage}");
-            Console.WriteLine(Tab(1) + $"Start Time: {testSetStatus.StartTime}");
-            Console.WriteLine(Tab(1) + $"End Time: {testSetStatus.EndTime}");
-            Console.WriteLine(Tab(1) + $"Description: {testSetStatus.Description}");
-            Console.WriteLine(Tab(1) + $"Expected: {testSetStatus.Expected}");
-            Console.WriteLine(Tab(1) + $"Actual: {testSetStatus.Actual}");
+            ITestCaseStatus testCaseStatus = testCase.TestCaseStatus;
+            string str;
+            str = testCase.CurrTestStepNumber.ToString();
+            str = testCase.Name;
+            str = testCase.OnExceptionFlowBehavior.ToString();
+            str = testCase.TestCaseNumber.ToString();
+            str = testCase.TotalTestSteps.ToString();
+            str = testCaseStatus.RunSuccessful.ToString();
+            str = testCaseStatus.ErrorStack;
+            str = testCaseStatus.FriendlyErrorMessage;
+            str = testCaseStatus.StartTime.ToString();
+            str = testCaseStatus.EndTime.ToString();
+            str = testCaseStatus.Description;
+            str = testCaseStatus.Expected;
+            str = testCaseStatus.Actual;
         }
     }
 }
