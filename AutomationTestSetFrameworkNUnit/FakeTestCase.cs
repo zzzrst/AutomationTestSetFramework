@@ -12,6 +12,10 @@ namespace AutomationTestSetFrameworkNUnit
 
         public string Name { get; set; }
 
+        public int TestCaseNumber { get; set; }
+
+        public int CurrTestStepNumber { get; set; }
+
         public List<ITestStep> TestStep { get; set; }
 
         private int TestStepIndex = 0;
