@@ -9,5 +9,9 @@ namespace AutomationTestSetFramework
     /// </summary>
     public interface ITestCaseStatus : ITestStatus
     {
+        /// <summary>
+        /// Gets or sets the number of the test case this status is referring to.
+        /// </summary>
+        public int TestCaseNumber { get; set; }
     }
 }
