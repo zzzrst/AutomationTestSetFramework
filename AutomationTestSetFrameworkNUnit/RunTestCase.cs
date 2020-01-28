@@ -85,7 +85,7 @@ namespace AutomationTestSetFrameworkNUnit
             Assert.AreEqual(1, fakeTestStep.ExecuteCount, "Expected the executed count to be 1.");
             Assert.AreEqual(1, fakeTestStep.SetupCount, "Expected the setup count to be 1.");
             Assert.AreEqual(1, fakeTestStep.TearDownCount, "Expected the tear down count to be 1.");
-            Assert.AreEqual(1, fakeTestStep.ExceptionHandleCount, "Expected the exception handle count to be 0.");
+            Assert.AreEqual(1, fakeTestStep.ExceptionHandleCount, "Expected the exception handle count to be 1.");
         }
     }
 }
