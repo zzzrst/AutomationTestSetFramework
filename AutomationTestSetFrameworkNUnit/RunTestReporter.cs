@@ -102,8 +102,8 @@ namespace AutomationTestSetFrameworkNUnit
             FakeReporter fakeReporter = Reporter as FakeReporter;
             FakeTestCaseStatus testCaseStatus = TestCaseStatus as FakeTestCaseStatus;
 
-            Reporter.AddTestCaseStatus(testCaseStatus);
-            Reporter.Report();
+            fakeReporter.AddTestCaseStatus(testCaseStatus);
+            fakeReporter.Report();
 
             Assert.AreEqual(1, fakeReporter.TestCaseStatuses.Count, "Expected the size of the testCaseStatus to be 1");
         }
@@ -115,9 +115,9 @@ namespace AutomationTestSetFrameworkNUnit
             FakeTestCaseStatus testCaseStatus = TestCaseStatus as FakeTestCaseStatus;
             FakeTestStepStatus testStepStatus = TestStepStatus as FakeTestStepStatus;
 
-            Reporter.AddTestCaseStatus(testCaseStatus);
-            Reporter.AddTestStepStatusToTestCase(testStepStatus, testCaseStatus);
-            Reporter.Report();
+            fakeReporter.AddTestCaseStatus(testCaseStatus);
+            fakeReporter.AddTestStepStatusToTestCase(testStepStatus, testCaseStatus);
+            fakeReporter.Report();
 
             Assert.AreEqual(1, fakeReporter.TestCaseStatuses.Count, "Expected the size of the testCaseStatus to be 1");
             Assert.AreEqual(1, fakeReporter.TestCaseToTestSteps.Count, "Expected the size of the TestCaseToTestSteps to be 1");
@@ -132,10 +132,10 @@ namespace AutomationTestSetFrameworkNUnit
             FakeTestStepStatus testStepStatus = TestStepStatus as FakeTestStepStatus;
             FakeTestStepStatus testStepStatusTwo = TestStepStatus as FakeTestStepStatus;
 
-            Reporter.AddTestCaseStatus(testCaseStatus);
-            Reporter.AddTestStepStatusToTestCase(testStepStatus, testCaseStatus);
-            Reporter.AddTestStepStatusToTestCase(testStepStatusTwo, testCaseStatus);
-            Reporter.Report();
+            fakeReporter.AddTestCaseStatus(testCaseStatus);
+            fakeReporter.AddTestStepStatusToTestCase(testStepStatus, testCaseStatus);
+            fakeReporter.AddTestStepStatusToTestCase(testStepStatusTwo, testCaseStatus);
+            fakeReporter.Report();
 
             Assert.AreEqual(1, fakeReporter.TestCaseStatuses.Count, "Expected the size of the testCaseStatus to be 1");
             Assert.AreEqual(1, fakeReporter.TestCaseToTestSteps.Count, "Expected the size of the TestCaseToTestSteps to be 1");
@@ -151,11 +151,11 @@ namespace AutomationTestSetFrameworkNUnit
             FakeTestStepStatus testStepStatus = TestStepStatus as FakeTestStepStatus;
             FakeTestStepStatus testStepStatusTwo = TestStepStatus as FakeTestStepStatus;
 
-            Reporter.AddTestCaseStatus(testCaseStatus);
-            Reporter.AddTestCaseStatus(testCaseStatusTwo);
-            Reporter.AddTestStepStatusToTestCase(testStepStatus, testCaseStatus);
-            Reporter.AddTestStepStatusToTestCase(testStepStatusTwo, testCaseStatusTwo);
-            Reporter.Report();
+            fakeReporter.AddTestCaseStatus(testCaseStatus);
+            fakeReporter.AddTestCaseStatus(testCaseStatusTwo);
+            fakeReporter.AddTestStepStatusToTestCase(testStepStatus, testCaseStatus);
+            fakeReporter.AddTestStepStatusToTestCase(testStepStatusTwo, testCaseStatusTwo);
+            fakeReporter.Report();
 
             Assert.AreEqual(2, fakeReporter.TestCaseStatuses.Count, "Expected the size of the testCaseStatus to be 2");
             Assert.AreEqual(2, fakeReporter.TestCaseToTestSteps.Count, "Expected the size of the TestCaseToTestSteps to be 2");
