@@ -9,24 +9,10 @@ namespace AutomationTestSetFrameworkNUnit
     {
         private ITestCase TestCase;
         private ITestStep TestStep;
-        private ITestStepStatus TestStatus;
-
 
         [SetUp]
         public void Setup()
         {
-            TestStatus = new FakeTestStepStatus()
-            {
-                RunSuccessful = false,
-                ErrorStack = string.Empty,
-                FriendlyErrorMessage = string.Empty,
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now,
-                Description = "Fake Test Set",
-                Expected = string.Empty,
-                Actual = string.Empty,
-
-            };
             TestStep = new FakeTestStep()
             {
                 ShouldExecuteAmountOfTimes = 1,
