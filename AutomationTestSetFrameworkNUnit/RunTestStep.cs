@@ -57,11 +57,15 @@ namespace AutomationTestSetFrameworkNUnit
             if (TestStep is FakeTestStep fakeTestStep)
             {
                 fakeTestStep.NextRunRaiseException = true;
+
                 AutomationTestSetDriver.RunTestStep(TestStep);
+
                 Assert.AreEqual(1, fakeTestStep.ExecuteCount, "Expected the executed count to be 1.");
                 Assert.AreEqual(1, fakeTestStep.SetupCount, "Expected the setup count to be 1.");
                 Assert.AreEqual(1, fakeTestStep.TearDownCount, "Expected the tear down count to be 1.");
                 Assert.AreEqual(1, fakeTestStep.ExceptionHandleCount, "Expected the exception handle count to be 1.");
+                Assert.IsNotEmpty(fakeTestStep.TestStepStatus.FriendlyErrorMessage, "Expected a friendly error message.");
+                Assert.IsNotEmpty(fakeTestStep.TestStepStatus.ErrorStack, "Expected a stack trace.");
             }
         }
 
@@ -81,6 +85,8 @@ namespace AutomationTestSetFrameworkNUnit
                 Assert.AreEqual(1, fakeTestStep.SetupCount, "Expected the setup count to be 1.");
                 Assert.AreEqual(0, fakeTestStep.TearDownCount, "Expected the tear down count to be 0.");
                 Assert.AreEqual(1, fakeTestStep.ExceptionHandleCount, "Expected the exception handle count to be 1.");
+                Assert.IsNotEmpty(fakeTestStep.TestStepStatus.FriendlyErrorMessage, "Expected a friendly error message.");
+                Assert.IsNotEmpty(fakeTestStep.TestStepStatus.ErrorStack, "Expected a stack trace.");
             }
         }
 
@@ -90,11 +96,14 @@ namespace AutomationTestSetFrameworkNUnit
             if (TestStep is FakeTestStep fakeTestStep)
             {
                 fakeTestStep.ShouldExecuteAmountOfTimes = 5;
+
                 AutomationTestSetDriver.RunTestStep(TestStep);
+
                 Assert.AreEqual(5, fakeTestStep.ExecuteCount, "Expected the executed count to be 5.");
                 Assert.AreEqual(1, fakeTestStep.SetupCount, "Expected the setup count to be 1.");
                 Assert.AreEqual(1, fakeTestStep.TearDownCount, "Expected the tear down count to be 1.");
                 Assert.AreEqual(0, fakeTestStep.ExceptionHandleCount, "Expected the exception handle count to be 0.");
+                Assert.IsTrue(fakeTestStep.TestStepStatus.RunSuccessful, "Expected the test to have ran successfuly");
             }
         }
 
@@ -105,11 +114,15 @@ namespace AutomationTestSetFrameworkNUnit
             {
                 fakeTestStep.ShouldExecuteAmountOfTimes = 5;
                 fakeTestStep.NextRunRaiseException = true;
+
                 AutomationTestSetDriver.RunTestStep(TestStep);
+
                 Assert.AreEqual(1, fakeTestStep.ExecuteCount, "Expected the executed count to be 1.");
                 Assert.AreEqual(1, fakeTestStep.SetupCount, "Expected the setup count to be 1.");
                 Assert.AreEqual(1, fakeTestStep.TearDownCount, "Expected the tear down count to be 1.");
                 Assert.AreEqual(1, fakeTestStep.ExceptionHandleCount, "Expected the exception handle count to be 1.");
+                Assert.IsNotEmpty(fakeTestStep.TestStepStatus.FriendlyErrorMessage, "Expected a friendly error message.");
+                Assert.IsNotEmpty(fakeTestStep.TestStepStatus.ErrorStack, "Expected a stack trace.");
             }
         }
 
@@ -134,6 +147,8 @@ namespace AutomationTestSetFrameworkNUnit
                 Assert.AreEqual(6, fakeTestStep.SetupCount, "Expected the setup count to be 6.");
                 Assert.AreEqual(1, fakeTestStep.TearDownCount, "Expected the tear down count to be 5.");
                 Assert.AreEqual(5, fakeTestStep.ExceptionHandleCount, "Expected the exception handle count to be 1.");
+                Assert.IsNotEmpty(fakeTestStep.TestStepStatus.FriendlyErrorMessage, "Expected a friendly error message.");
+                Assert.IsNotEmpty(fakeTestStep.TestStepStatus.ErrorStack, "Expected a stack trace.");
             }
         }
     }
