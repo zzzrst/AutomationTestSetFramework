@@ -122,5 +122,25 @@ namespace AutomationTestSetFrameworkNUnit
             Assert.AreEqual(1, fakeTestStep2.TearDownCount, "Expected the tear down count to be 1.");
             Assert.AreEqual(0, fakeTestStep2.ExceptionHandleCount, "Expected the exception handle count to be 0.");
         }
+
+        [Test]
+        public void RunTestCaseNotExecute()
+        {
+            FakeTestStep fakeTestStep = TestStep as FakeTestStep;
+            FakeTestCase fakeTestCase = TestCase as FakeTestCase;
+
+            fakeTestCase.ShouldExecuteVariable = false;
+
+            AutomationTestSetDriver.RunTestCase(TestCase);
+
+            Assert.AreEqual(1, fakeTestCase.SetupCount, "Expected the setup count to be 1.");
+            Assert.AreEqual(1, fakeTestCase.TearDownCount, "Expected the tear down count to be 1.");
+            Assert.AreEqual(0, fakeTestCase.ExceptionHandleCount, "Expected the exception handle count to be 0.");
+
+            Assert.AreEqual(0, fakeTestStep.ExecuteCount, "Expected the executed count to be 0.");
+            Assert.AreEqual(0, fakeTestStep.SetupCount, "Expected the setup count to be 0.");
+            Assert.AreEqual(0, fakeTestStep.TearDownCount, "Expected the tear down count to be 0.");
+            Assert.AreEqual(0, fakeTestStep.ExceptionHandleCount, "Expected the exception handle count to be 0.");
+        }
     }
 }

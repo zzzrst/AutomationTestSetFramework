@@ -8,7 +8,7 @@ namespace AutomationTestSetFrameworkNUnit
 {
     public class FakeTestSet : ITestSet
     {
-        public bool ShouldExecuteVariable { get; set; }
+        public bool ShouldExecuteVariable { get; set; } = true;
 
         public bool ExistNextTestCaseVariable { get; set; }
 
@@ -41,6 +41,10 @@ namespace AutomationTestSetFrameworkNUnit
 
         public bool ExistNextTestCase()
         {
+            if (NextRunRaiseException)
+            {
+                throw new Exception();
+            }
             return testCaseIndex < TotalTestCases;
         }
 

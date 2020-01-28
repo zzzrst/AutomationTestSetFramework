@@ -35,7 +35,6 @@ namespace AutomationTestSetFrameworkNUnit
 
             TestSet = new FakeTestSet()
             {
-                ShouldExecuteVariable = true,
                 Name = "Test Set",
                 OnExceptionFlowBehavior = IMethodBoundaryAspect.FlowBehavior.Return,
                 TestCases = new List<ITestCase> { TestCase },

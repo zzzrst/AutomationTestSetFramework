@@ -8,6 +8,8 @@ namespace AutomationTestSetFrameworkNUnit
 {
     public class FakeTestCase : ITestCase
     {
+        public bool ShouldExecuteVariable { get; set; } = true;
+
         public int ShouldExecuteAmountOfTimes { get; set; } = 1;
 
         public string Name { get; set; }
@@ -39,6 +41,10 @@ namespace AutomationTestSetFrameworkNUnit
 
         public bool ExistNextTestStep()
         {
+            if (NextRunRaiseException)
+            {
+                throw new Exception();
+            }
             return TestStepIndex < TotalTestSteps;
         }
 
@@ -67,7 +73,7 @@ namespace AutomationTestSetFrameworkNUnit
 
         public bool ShouldExecute()
         {
-            return this.ExistNextTestStep();
+            return this.ShouldExecuteVariable;
         }
 
         public void TearDown()
