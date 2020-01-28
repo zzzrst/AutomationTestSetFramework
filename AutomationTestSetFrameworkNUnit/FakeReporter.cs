@@ -6,11 +6,11 @@ namespace AutomationTestSetFrameworkNUnit
 {
     class FakeReporter : IReporter
     {
-        List<ITestSetStatus> TestSetStatuses { get; set; }
+        public List<ITestSetStatus> TestSetStatuses { get; set; }
 
-        List<ITestCaseStatus> TestCaseStatuses { get; set; }
+        public List<ITestCaseStatus> TestCaseStatuses { get; set; }
 
-        Dictionary<ITestCaseStatus,List<ITestStepStatus>> TestCaseToTestSteps { get; set; }
+        public Dictionary<ITestCaseStatus,List<ITestStepStatus>> TestCaseToTestSteps { get; set; }
 
         public void AddTestCaseStatus(ITestCaseStatus testCaseStatus)
         {
