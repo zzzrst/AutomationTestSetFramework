@@ -8,15 +8,29 @@ namespace AutomationTestSetFrameworkNUnit
     public class RunTestStepTest
     {
         private ITestStep TestStep;
+        private ITestStepStatus TestStatus;
 
         [SetUp]
         public void Setup()
         {
+            TestStatus = new FakeTestStepStatus()
+            {
+                RunSuccessful = false,
+                ErrorStack = string.Empty,
+                FriendlyErrorMessage = string.Empty,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now,
+                Description = "Fake Test Step",
+                Expected = string.Empty,
+                Actual = string.Empty,
+                TestStepNumber = 1,
+            };
             TestStep = new FakeTestStep()
             {
                 ShouldExecuteAmountOfTimes = 1,
                 Name = "Test Step",
                 TestStepNumber = 1,
+                TestStepStatus = TestStatus,
                 NextRunRaiseException = false,
                 OnExceptionFlowBehavior = IMethodBoundaryAspect.FlowBehavior.Return,
             };
@@ -33,6 +47,7 @@ namespace AutomationTestSetFrameworkNUnit
                 Assert.AreEqual(1, fakeTestStep.SetupCount, "Expected the setup count to be 1.");
                 Assert.AreEqual(1, fakeTestStep.TearDownCount, "Expected the tear down count to be 1.");
                 Assert.AreEqual(0, fakeTestStep.ExceptionHandleCount, "Expected the exception handle count to be 0.");
+                Assert.IsTrue(fakeTestStep.TestStepStatus.RunSuccessful, "Expected the test to have ran successfuly");
             }
         }
 

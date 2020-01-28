@@ -33,7 +33,6 @@ namespace AutomationTestSetFrameworkNUnit
             ExecuteCount += 1;
             if (NextRunRaiseException)
             {
-                TestStepStatus.RunSuccessful = false;
                 throw new Exception();
             }
             TestStepStatus.RunSuccessful = true;
@@ -42,11 +41,15 @@ namespace AutomationTestSetFrameworkNUnit
         public void HandleException(Exception e)
         {
             ExceptionHandleCount += 1;
+            TestStepStatus.RunSuccessful = false;
+            TestStepStatus.ErrorStack = e.StackTrace;
+            TestStepStatus.FriendlyErrorMessage = e.Message;
         }
 
         public void SetUp()
         {
             SetupCount += 1;
+            TestStepStatus.StartTime = DateTime.Now;
         }
 
         public bool ShouldExecute()
@@ -57,6 +60,7 @@ namespace AutomationTestSetFrameworkNUnit
         public void TearDown()
         {
             TearDownCount += 1;
+            TestStepStatus.EndTime = DateTime.Now;
         }
     }
 }
