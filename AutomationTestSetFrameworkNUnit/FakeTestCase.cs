@@ -64,6 +64,8 @@ namespace AutomationTestSetFrameworkNUnit
         public void HandleException(Exception e)
         {
             ExceptionHandleCount += 1;
+            // if an exception is thrown, we are recalling the test case. hence it has been executed once.
+            ShouldExecuteAmountOfTimes -= 1;
         }
 
         public void SetUp()
@@ -73,7 +75,7 @@ namespace AutomationTestSetFrameworkNUnit
 
         public bool ShouldExecute()
         {
-            return this.ShouldExecuteVariable;
+            return this.ShouldExecuteVariable && ShouldExecuteAmountOfTimes > 0;
         }
 
         public void TearDown()

@@ -58,6 +58,8 @@ namespace AutomationTestSetFrameworkNUnit
         public void HandleException(Exception e)
         {
             ExceptionHandleCount += 1;
+            // skips the current test case.
+            testCaseIndex += 1;
         }
 
         public void SetUp()
@@ -67,7 +69,7 @@ namespace AutomationTestSetFrameworkNUnit
 
         public bool ShouldExecute()
         {
-            return this.ShouldExecuteVariable;
+            return this.ShouldExecuteVariable && testCaseIndex < TotalTestCases;
         }
 
         public void TearDown()

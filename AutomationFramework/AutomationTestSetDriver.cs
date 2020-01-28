@@ -29,7 +29,7 @@ namespace AutomationTestSetFramework
             // We continue to run our test set if
             //                                    1. The next test case exists.
             //                                    2. We are supposed to execute.
-            while (testSet.ExistNextTestCase() && testSet.ShouldExecute())
+            while (testSet.ShouldExecute() && testSet.ExistNextTestCase())
             {
                 ITestCase testCase = testSet.GetNextTestCase();
 
@@ -54,7 +54,7 @@ namespace AutomationTestSetFramework
                 throw new ArgumentNullException($"{ResourceHelper.GetString("TestCaseNullExceptionMessage")}");
             }
 
-            while (testCase.ExistNextTestStep() && testCase.ShouldExecute())
+            while (testCase.ShouldExecute() && testCase.ExistNextTestStep())
             {
                 ITestStep testStep = testCase.GetNextTestStep();
                 RunTestStep(testStep);

@@ -1,5 +1,6 @@
 using AutomationTestSetFramework;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 
 namespace AutomationTestSetFrameworkNUnit
@@ -165,6 +166,59 @@ namespace AutomationTestSetFrameworkNUnit
             Assert.AreEqual(1, fakeTestStep2.SetupCount, "Expected the setup count to be 1.");
             Assert.AreEqual(1, fakeTestStep2.TearDownCount, "Expected the tear down count to be 1.");
             Assert.AreEqual(0, fakeTestStep2.ExceptionHandleCount, "Expected the exception handle count to be 0.");
+        }
+
+        [Test]
+        public void RunTestSetWithExceptionAndDefaultFlow() 
+        {
+            FakeTestStep fakeTestStep = TestStep as FakeTestStep;
+            FakeTestCase fakeTestCase = TestCase as FakeTestCase;
+            FakeTestSet fakeTestSet = TestSet as FakeTestSet;
+
+            fakeTestSet.NextRunRaiseException = true;
+
+            AutomationTestSetDriver.RunTestSet(fakeTestSet);
+
+            Assert.AreEqual(1, fakeTestSet.SetupCount, "Expected the setup count to be 1.");
+            Assert.AreEqual(1, fakeTestSet.TearDownCount, "Expected the tear down count to be 1.");
+            Assert.AreEqual(1, fakeTestSet.ExceptionHandleCount, "Expected the exception handle count to be 1.");
+
+            Assert.AreEqual(0, fakeTestCase.SetupCount, "Expected the setup count to be 0.");
+            Assert.AreEqual(0, fakeTestCase.TearDownCount, "Expected the tear down count to be 0.");
+            Assert.AreEqual(0, fakeTestCase.ExceptionHandleCount, "Expected the exception handle count to be 0.");
+
+            Assert.AreEqual(0, fakeTestStep.ExecuteCount, "Expected the executed count to be 0.");
+            Assert.AreEqual(0, fakeTestStep.SetupCount, "Expected the setup count to be 0.");
+            Assert.AreEqual(0, fakeTestStep.TearDownCount, "Expected the tear down count to be 0.");
+            Assert.AreEqual(0, fakeTestStep.ExceptionHandleCount, "Expected the exception handle count to be 0.");
+        }
+
+        [Test]
+        public void RunTestSetWithExceptionAndRethrowFlow() 
+        {
+            FakeTestStep fakeTestStep = TestStep as FakeTestStep;
+            FakeTestCase fakeTestCase = TestCase as FakeTestCase;
+            FakeTestSet fakeTestSet = TestSet as FakeTestSet;
+
+            fakeTestSet.NextRunRaiseException = true;
+            fakeTestSet.OnExceptionFlowBehavior = IMethodBoundaryAspect.FlowBehavior.RethrowException;
+
+            Assert.Throws<Exception>(
+                () => AutomationTestSetDriver.RunTestSet(fakeTestSet)
+            );
+
+            Assert.AreEqual(1, fakeTestSet.SetupCount, "Expected the setup count to be 1.");
+            Assert.AreEqual(0, fakeTestSet.TearDownCount, "Expected the tear down count to be 0.");
+            Assert.AreEqual(1, fakeTestSet.ExceptionHandleCount, "Expected the exception handle count to be 1.");
+
+            Assert.AreEqual(0, fakeTestCase.SetupCount, "Expected the setup count to be 0.");
+            Assert.AreEqual(0, fakeTestCase.TearDownCount, "Expected the tear down count to be 0.");
+            Assert.AreEqual(0, fakeTestCase.ExceptionHandleCount, "Expected the exception handle count to be 0.");
+
+            Assert.AreEqual(0, fakeTestStep.ExecuteCount, "Expected the executed count to be 0.");
+            Assert.AreEqual(0, fakeTestStep.SetupCount, "Expected the setup count to be 0.");
+            Assert.AreEqual(0, fakeTestStep.TearDownCount, "Expected the tear down count to be 0.");
+            Assert.AreEqual(0, fakeTestStep.ExceptionHandleCount, "Expected the exception handle count to be 0.");
         }
     }
 }
