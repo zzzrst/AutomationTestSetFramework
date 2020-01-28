@@ -12,23 +12,8 @@ namespace AutomationTestSetFramework
     public interface IMethodBoundaryAspect
     {
         /// <summary>
-        /// Called when an exception is thrown.
+        /// Enum for flow behaviour.
         /// </summary>
-        /// <param name="e">The exception that is thrown by the method.</param>
-        public void HandleException(Exception e);
-
-        public FlowBehavior OnExceptionFlowBehavior { get; set; }
-
-        /// <summary>
-        /// Called right before the method is started to be executed.
-        /// </summary>
-        public void SetUp();
-
-        /// <summary>
-        /// Called right before the method is about to exit. Note, this method is called regardless if there was an exception / not.
-        /// </summary>
-        public void TearDown();
-
         public enum FlowBehavior
         {
             /// <summary>
@@ -46,5 +31,26 @@ namespace AutomationTestSetFramework
             /// </summary>
             RethrowException,
         }
+
+        /// <summary>
+        /// Gets or sets what to do when an exception is thrown.
+        /// </summary>
+        public FlowBehavior OnExceptionFlowBehavior { get; set; }
+
+        /// <summary>
+        /// Called when an exception is thrown.
+        /// </summary>
+        /// <param name="e">The exception that is thrown by the method.</param>
+        public void HandleException(Exception e);
+
+        /// <summary>
+        /// Called right before the method is started to be executed.
+        /// </summary>
+        public void SetUp();
+
+        /// <summary>
+        /// Called right before the method is about to exit. Note, this method is called regardless if there was an exception / not.
+        /// </summary>
+        public void TearDown();
     }
 }
