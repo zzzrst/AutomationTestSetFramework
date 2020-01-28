@@ -1,5 +1,6 @@
 using AutomationTestSetFramework;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace AutomationTestSetFrameworkNUnit
 {
@@ -27,6 +28,11 @@ namespace AutomationTestSetFrameworkNUnit
                 NextRunRaiseException = false,
                 OnExceptionFlowBehavior = IMethodBoundaryAspect.FlowBehavior.Return,
                 TestStep = new List<ITestStep>() { TestStep },
+            };
+
+            TestSet = new FakeTestSet()
+            {
+
             };
         }
 

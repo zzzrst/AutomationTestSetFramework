@@ -28,6 +28,7 @@ namespace AutomationTestSetFrameworkNUnit
                 Actual = string.Empty,
                 TestStepNumber = 1
             };
+
             TestCaseStatus = new FakeTestCaseStatus()
             {
                 RunSuccessful = false,
@@ -40,6 +41,7 @@ namespace AutomationTestSetFrameworkNUnit
                 Actual = string.Empty,
                 TestCaseNumber = 1
             };
+
             TestCaseStatusTwo = new FakeTestCaseStatus()
             {
                 RunSuccessful = false,
@@ -52,6 +54,7 @@ namespace AutomationTestSetFrameworkNUnit
                 Actual = string.Empty,
                 TestCaseNumber = 1
             };
+
             TestSetStatus = new FakeTestSetStatus()
             {
                 RunSuccessful = false,
@@ -63,6 +66,7 @@ namespace AutomationTestSetFrameworkNUnit
                 Expected = string.Empty,
                 Actual = string.Empty,
             };
+
             Reporter = new FakeReporter()
             {
                 TestSetStatuses = new List<ITestSetStatus>(),
