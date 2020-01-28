@@ -73,7 +73,7 @@ namespace AutomationTestSetFrameworkNUnit
 
         public void UpdateTestSetStatus(ITestCaseStatus testCaseStatus)
         {
-            throw new NotImplementedException();
+            //
         }
     }
 }
