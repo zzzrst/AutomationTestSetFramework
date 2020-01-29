@@ -8,7 +8,7 @@ namespace AutomationTestSetFrameworkNUnit
 {
     public class FakeTestSet : ITestSet
     {
-        public bool ShouldExecuteVariable { get; set; }
+        public bool ShouldExecuteVariable { get; set; } = true;
 
         public bool ExistNextTestCaseVariable { get; set; }
 
@@ -19,6 +19,8 @@ namespace AutomationTestSetFrameworkNUnit
         private int testCaseIndex = 0;
 
         public ITestSetStatus TestSetStatus { get; set; }
+
+        public int CurrTestCaseNumber { get; set; }
 
         public int ExecuteCount { get; private set; } = 0;
 
@@ -39,6 +41,10 @@ namespace AutomationTestSetFrameworkNUnit
 
         public bool ExistNextTestCase()
         {
+            if (NextRunRaiseException)
+            {
+                throw new Exception();
+            }
             return testCaseIndex < TotalTestCases;
         }
 
@@ -52,6 +58,8 @@ namespace AutomationTestSetFrameworkNUnit
         public void HandleException(Exception e)
         {
             ExceptionHandleCount += 1;
+            // skips the current test case.
+            testCaseIndex += 1;
         }
 
         public void SetUp()
@@ -61,7 +69,7 @@ namespace AutomationTestSetFrameworkNUnit
 
         public bool ShouldExecute()
         {
-            return this.ShouldExecuteVariable;
+            return this.ShouldExecuteVariable && testCaseIndex < TotalTestCases;
         }
 
         public void TearDown()
@@ -71,7 +79,7 @@ namespace AutomationTestSetFrameworkNUnit
 
         public void UpdateTestSetStatus(ITestCaseStatus testCaseStatus)
         {
-            throw new NotImplementedException();
+            //
         }
     }
 }

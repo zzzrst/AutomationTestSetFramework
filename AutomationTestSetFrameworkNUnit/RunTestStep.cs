@@ -41,7 +41,9 @@ namespace AutomationTestSetFrameworkNUnit
             if (TestStep is FakeTestStep fakeTestStep)
             {
                 fakeTestStep.NextRunRaiseException = true;
+
                 AutomationTestSetDriver.RunTestStep(TestStep);
+
                 Assert.AreEqual(1, fakeTestStep.ExecuteCount, "Expected the executed count to be 1.");
                 Assert.AreEqual(1, fakeTestStep.SetupCount, "Expected the setup count to be 1.");
                 Assert.AreEqual(1, fakeTestStep.TearDownCount, "Expected the tear down count to be 1.");
@@ -74,7 +76,9 @@ namespace AutomationTestSetFrameworkNUnit
             if (TestStep is FakeTestStep fakeTestStep)
             {
                 fakeTestStep.ShouldExecuteAmountOfTimes = 5;
+
                 AutomationTestSetDriver.RunTestStep(TestStep);
+
                 Assert.AreEqual(5, fakeTestStep.ExecuteCount, "Expected the executed count to be 5.");
                 Assert.AreEqual(1, fakeTestStep.SetupCount, "Expected the setup count to be 1.");
                 Assert.AreEqual(1, fakeTestStep.TearDownCount, "Expected the tear down count to be 1.");
@@ -89,7 +93,9 @@ namespace AutomationTestSetFrameworkNUnit
             {
                 fakeTestStep.ShouldExecuteAmountOfTimes = 5;
                 fakeTestStep.NextRunRaiseException = true;
+
                 AutomationTestSetDriver.RunTestStep(TestStep);
+
                 Assert.AreEqual(1, fakeTestStep.ExecuteCount, "Expected the executed count to be 1.");
                 Assert.AreEqual(1, fakeTestStep.SetupCount, "Expected the setup count to be 1.");
                 Assert.AreEqual(1, fakeTestStep.TearDownCount, "Expected the tear down count to be 1.");

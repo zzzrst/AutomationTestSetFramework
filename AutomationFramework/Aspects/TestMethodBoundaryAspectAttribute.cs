@@ -43,7 +43,7 @@ namespace AutomationTestSetFramework
             if (args.Arguments[0] is IMethodBoundaryAspect firstArgument)
             {
                 firstArgument.HandleException(args.Exception);
-                
+
                 IMethodBoundaryAspect.FlowBehavior flowBehavior = firstArgument.OnExceptionFlowBehavior;
 
                 switch (flowBehavior)

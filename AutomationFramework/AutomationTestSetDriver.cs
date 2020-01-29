@@ -19,28 +19,33 @@ namespace AutomationTestSetFramework
         /// </summary>
         /// <param name="testSet">The test set to be run.</param>
         [TestMethodBoundaryAspect]
-        public static void RunTestSet(ITestSet TestSet)
+        public static void RunTestSet(ITestSet testSet)
         {
-            if (TestSet == null)
+            if (testSet == null)
             {
                 throw new ArgumentNullException($"{ResourceHelper.GetString("TestSetNullExceptionMessage")}");
             }
+
             // We continue to run our test set if
             //                                    1. The next test case exists.
             //                                    2. We are supposed to execute.
-            while (TestSet.ExistNextTestCase() && TestSet.ShouldExecute())
+            while (testSet.ShouldExecute() && testSet.ExistNextTestCase())
             {
-                ITestCase testCase = TestSet.GetNextTestCase();
+                ITestCase testCase = testSet.GetNextTestCase();
 
                 // We call on Run Test Case to run the test case.
                 // The test case status should be updated during the run.
                 RunTestCase(testCase);
 
                 // Update my test set status based on the test case status.
-                TestSet.UpdateTestSetStatus(testCase.TestCaseStatus);
+                testSet.UpdateTestSetStatus(testCase.TestCaseStatus);
             }
         }
 
+        /// <summary>
+        /// Run the Test Case that is given.
+        /// </summary>
+        /// <param name="testCase">Test case that is provided.</param>
         [TestMethodBoundaryAspect]
         public static void RunTestCase(ITestCase testCase)
         {
@@ -49,7 +54,7 @@ namespace AutomationTestSetFramework
                 throw new ArgumentNullException($"{ResourceHelper.GetString("TestCaseNullExceptionMessage")}");
             }
 
-            while (testCase.ExistNextTestStep() && testCase.ShouldExecute())
+            while (testCase.ShouldExecute() && testCase.ExistNextTestStep())
             {
                 ITestStep testStep = testCase.GetNextTestStep();
                 RunTestStep(testStep);
@@ -57,6 +62,10 @@ namespace AutomationTestSetFramework
             }
         }
 
+        /// <summary>
+        /// Run the test step that is provided.
+        /// </summary>
+        /// <param name="testStep">The test Step that is provided.</param>
         [TestMethodBoundaryAspect]
         public static void RunTestStep(ITestStep testStep)
         {
