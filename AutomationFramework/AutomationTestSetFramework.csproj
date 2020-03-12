@@ -7,7 +7,7 @@
     <StartupObject />
     <NeutralLanguage />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.1.0</Version>
+    <Version>1.1.2</Version>
     <PackageProjectUrl></PackageProjectUrl>
     <Description>Framework for automation testing</Description>
     <RepositoryUrl>https://github.com/zzzrst/AutomationTestSetFramework</RepositoryUrl>
