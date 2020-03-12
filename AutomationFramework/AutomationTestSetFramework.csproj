@@ -6,6 +6,12 @@
     <ApplicationIcon />
     <StartupObject />
     <NeutralLanguage />
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.1.0</Version>
+    <PackageProjectUrl></PackageProjectUrl>
+    <Description>Framework for automation testing</Description>
+    <RepositoryUrl>https://github.com/zzzrst/AutomationTestSetFramework</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
