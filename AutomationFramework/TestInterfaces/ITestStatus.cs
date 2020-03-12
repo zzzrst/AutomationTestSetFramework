@@ -11,6 +11,11 @@ namespace AutomationTestSetFramework
     public interface ITestStatus
     {
         /// <summary>
+        /// Gets or sets a value indicating whether the Name of the Test Set/Case/Step.
+        /// </summary>
+        public bool Name { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether the run was successful or not.
         /// </summary>
         public bool RunSuccessful { get; set; }
