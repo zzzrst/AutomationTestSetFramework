@@ -11,12 +11,4 @@ Through the use of dependency injection, we aim to use this framework as the cen
 With the use of interfaces, the behavior of how test sets / cases / steps will be run can be easily tested.
 
 # Getting Started
-* You must have .Net Core 3.0 SDK / Runtime installed.
-
-
-# Version Number
-The version number for this repository follows (MAJOR).(MINOR).(dailyBuild).(buildTime).
-
-Major version is updated when a large functionality has changed / is introduced.
-
-Minor version is updated when methods are added / removed for bug fixes or a helper class is added due to refactoring.
+* You must have .Net 6.0 SDK / Runtime installed.
