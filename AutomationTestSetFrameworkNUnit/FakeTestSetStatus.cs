@@ -15,5 +15,7 @@ namespace AutomationTestSetFrameworkNUnit
         public string Description { get; set; }
         public string Expected { get; set; }
         public string Actual { get; set; }
+        public string Name { get; set; }
+
     }
 }

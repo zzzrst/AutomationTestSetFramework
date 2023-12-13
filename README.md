@@ -11,4 +11,4 @@ Through the use of dependency injection, we aim to use this framework as the cen
 With the use of interfaces, the behavior of how test sets / cases / steps will be run can be easily tested.
 
 # Getting Started
-* You must have .Net Core 3.0 SDK / Runtime installed.
+* You must have .Net 6.0 SDK / Runtime installed.
